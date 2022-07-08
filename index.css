@@ -58,3 +58,7 @@ body {
     background-image: url("images/lorenz.png");
     background-position: center;
 }
+
+#flowfield {
+    background-image: url("images/flowfield.png");
+}
