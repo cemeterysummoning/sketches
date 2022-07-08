@@ -4,20 +4,16 @@ let width = window.innerWidth - 10;
 let height = window.innerHeight - 45;
 let trailFactor = 10;
 
-let noiseScale;
-let trailScale;
-let particleScale;
-
 function setup() {
     createCanvas(width, height);
-    particleScale = createSlider(0, 500, 500, 50);
+    let particleScale = createSlider(0, 500, 500, 50);
 
     for (let i = 0; i < particleScale.value(); i++) {
         particles.push(createVector(random(width), random(height)));
     }
     stroke(255);
-    noiseScale = createSlider(0, 1, 0.01, 0.01);
-    trailScale = createSlider(0, 100, 90, 10);
+    let noiseScale = createSlider(0, 1, 0.01, 0.01);
+    let trailScale = createSlider(0, 100, 90, 10);
     
 }
   
