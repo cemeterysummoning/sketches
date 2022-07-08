@@ -16,7 +16,7 @@ function setup() {
         particles.push(createVector(random(width), random(height)));
     }
     stroke(255);
-    noiseScgale = createSlider(0, 1, 0.01, 0.01);
+    noiseScale = createSlider(0, 1, 0.01, 0.01);
     trailScale = createSlider(0, 100, 90, 10);
     
 }
