@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Sketches</title>
+</head>
+<body>
+    <div id="header">
+        <h1 class="heading">Sketches</h1>
+    </div>
+    <div id="thumbnails">
+        <div class="thumb" id="firefly">
+            <div class="text">
+                <h1>Fireflies</h1>
+            </div>
+        </div>
+        <div class="thumb" id="attractor">
+            <div class="text">
+                <h1>Lorenz Attractor</h1>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+        let sketches = document.getElementsByClassName("thumb");
+        for (let sketch of sketches) {
+            sketch.onclick = function() {
+                location.href = `${sketch.id}/${sketch.id}.html`
+            }
+        }
+    </script>
+</body>
+</html>

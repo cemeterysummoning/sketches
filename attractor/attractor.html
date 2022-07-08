@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        #container {
+            display: flex;
+        }
+        #canv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <div id="container">
+        <div id="canv">
+        </div>
+        <div id="slides">
+            <p id="scale-value">scale: 15</p>
+            <input type="range" min="0" max="20" value="15" id="scale">
+            <p id="c-value">c: 28</p>
+            <input type="range" min="-50" max="50" value="28" id="c">
+            <p id="t-value">t: -6</p>
+            <input type="range" min="-50" max="50" value="-6" id="t">
+        </div>
+    </div>
+
+    <script src="attractor.js"></script>
+</body>
+</html>

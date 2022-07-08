@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        :root {
+            --color-alpha: white;
+            --color-beta: transparent;
+        }
+        * {
+            background-color: black;
+        }
+        .stars {
+            position: absolute;
+            height: 4px;
+            width: 4px;
+            border-radius: 100%;
+            background: rgb(166, 208, 38);
+        }
+        .slidecontainer {
+            position: absolute;
+        }
+    </style>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="500" value="250" class="slider" id="myRange">
+        <input type="range" min="1" max="300" value="50" class="slider" id="radius">
+    </div>
+    <div id="starholder">
+
+    </div>
+    <script>
+        function main(particleCount, radius) {
+
+            let slider = document.getElementById("myRange");
+            let radii = document.getElementById("radius");
+            let area = document.getElementById("starholder");
+            
+            let ani = requestAnimationFrame(flicker);
+
+            let particles = [];
+            let opacityBackwards = [];
+            let dest = [];
+            const windowHeight = window.innerHeight - 4;
+            const windowWidth = window.innerWidth - 4;
+
+            slider.oninput = function() {
+                area.innerHTML = ""; 
+                cancelAnimationFrame(ani);
+                main(this.value, radius);
+            };
+            radii.oninput = function() {
+                area.innerHTML = ""; 
+                cancelAnimationFrame(ani);
+                main(particleCount, this.value);
+            };
+            
+            function numFromPx(str) {
+                let pex = str.match(/(\d+)px/);
+                let num = + pex[1];
+                return num;
+            }
+            function opac(i) {
+                let opacity = Number(particles[i].style.opacity);
+                let final;
+                step = 0.05;
+                if (opacityBackwards[i] && (opacity - step <= 0)) {
+                    opacityBackwards[i] = false;
+                } else if (!opacityBackwards[i] && (opacity + step >= 1)) {
+                    opacityBackwards[i] = true;
+                }
+
+                if (opacityBackwards[i]) {
+                    final = opacity - step;
+                } else {
+                    final = opacity + step;
+                }
+                return final;
+            }
+            
+            for (let i = 0; i < particleCount; i++) {
+                let dot = document.createElement("div");
+                
+                dot.className = "stars";
+                particles.push(dot);
+                area.appendChild(dot);
+                let leftTemp = Math.floor(Math.random() * windowWidth);
+                let topTemp = Math.floor(Math.random() * windowHeight);
+                dot.style.left = `${leftTemp}px`;
+                dot.style.top = `${topTemp}px`;
+                dot.style.opacity = `${Math.random()}`
+                let rand = Math.floor(Math.random() * 2);
+                if (rand == 1) {
+                    opacityBackwards.push(false);
+                } else {
+                    opacityBackwards.push(true);
+                }
+
+                let temp = [];
+
+                temp.push((Math.floor(Math.random() * (radius + 1)) + (leftTemp - Math.floor(radius / 2))) % windowWidth);
+                temp.push((Math.floor(Math.random() * (radius + 1)) + (topTemp - Math.floor(radius / 2))) % windowHeight);
+                dest.push(temp);
+            }
+
+            
+
+            function flicker() {
+                
+                for (let i = 0; i < particleCount; i++) {
+                    particles[i].style.opacity = opac(i);
+                    
+                    let left = numFromPx(particles[i].style.left);
+                    let top = numFromPx(particles[i].style.top);
+                    /* random walk 
+                    let augmentLeft = Math.floor(Math.random() * 3) - 1;
+                    let augmentTop = Math.floor(Math.random() * 3) - 1;
+                    if ((left + augmentLeft <= 0) || (left + augmentLeft >= windowWidth)) {
+                        finalLeft = left - augmentLeft;
+                    } else {
+                        finalLeft = left + augmentLeft;
+                    }
+
+                    if ((top + augmentTop <= 0) || (top + augmentTop >= windowHeight)) {
+                        finalTop = top - augmentTop;
+                    } else {
+                        finalTop = top + augmentTop;
+                    } */
+
+                    let finalLeft = left;
+                    let finalTop = top;
+                    if ((left == dest[i][0] && top == dest[i][1]) || (left == 0 || top == 0)) {
+                        dest[i][0] = (Math.floor(Math.random() * (radius + 1)) + (left - Math.floor(radius / 2)));
+                        dest[i][1] = (Math.floor(Math.random() * (radius + 1)) + (top - Math.floor(radius / 2)));
+                    }
+
+                    // choosing direction
+                    if (left < dest[i][0]) finalLeft++;
+                    if (left > dest[i][0]) finalLeft--;
+                    if (top < dest[i][1]) finalTop++;
+                    if (top > dest[i][1]) finalTop--;
+
+                    
+
+                    particles[i].style.left = finalLeft % windowWidth + "px";
+                    particles[i].style.top = finalTop % windowHeight + "px";
+                    
+                }
+                ani = requestAnimationFrame(flicker);
+            }
+
+        }
+        main(250, 50);
+    </script>
+</body>
+</html>        
