@@ -69,4 +69,5 @@ body {
 
 #convexhull {
     background-image: url("images/convexhull.png");
+    background-position: center;
 }
