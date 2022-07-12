@@ -66,3 +66,7 @@ body {
 #flowfield {
     background-image: url("images/flowfield.png");
 }
+
+#convexhull {
+    background-image: url("images/convexhull.png");
+}
