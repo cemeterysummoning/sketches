@@ -9,6 +9,8 @@ canvas.width = width;
 canvas.height = height;
 ctx = canvas.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
+let i = 1;
+let total = [];
 
 function addDot(event) {
     let xPos = event.pageX;
@@ -64,6 +66,42 @@ function isRight(point, top, next) {
     return d >= 0;
 }
 
+function calcPoints(start, end) {
+    let path = [start];
+    let dx = end.x - start.x;
+    let dy = end.y - start.y;
+
+    for (let i = 0; i < 100; i++) {
+        path.push({
+            x: start.x + dx * i / 100,
+            y: start.y + dy * i/100
+        });
+    }
+    path.push(end);
+    return path;
+}
+
+function totalPath(stack) {
+    for (let j = 1; j < stack.length; j++) {
+        total = total.concat(calcPoints(stack[j - 1], stack[j]));
+        console.log(calcPoints(stack[j - 1], stack[j]))
+    }
+    total = total.concat(calcPoints(stack[stack.length - 1], stack[0]));
+    animate();
+}
+
+function animate() {
+    if (i < total.length - 1) {
+        requestAnimationFrame(animate);
+    }
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.moveTo(total[i - 1].x, total[i - 1].y);
+    ctx.lineTo(total[i].x, total[i].y);
+    ctx.stroke();
+    i++;
+}
+
+
 function findHull() {
     findLowest();
     sortAngle();
@@ -80,14 +118,8 @@ function findHull() {
 
     ctx.strokeStyle = "#FFFFFF"
 
-    for (let i = 0; i < stack.length - 1; i++) {
-        ctx.moveTo(stack[i].x, stack[i].y);
-        ctx.lineTo(stack[i + 1].x, stack[i + 1].y);
-        ctx.stroke();
-    }
-    ctx.moveTo(stack[stack.length - 1].x, stack[stack.length - 1].y);
-    ctx.lineTo(stack[0].x, stack[0].y);
-    ctx.stroke();
+    totalPath(stack);
+
 }
 
 let button = document.getElementById("start");
