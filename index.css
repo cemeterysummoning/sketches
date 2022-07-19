@@ -71,3 +71,8 @@ body {
     background-image: url("images/convexhull.png");
     background-position: center;
 }
+
+#fern {
+    background-image: url("images/fern.png");
+    background-position: center;
+}
