@@ -76,3 +76,8 @@ body {
     background-image: url("images/fern.png");
     background-position: center;
 }
+
+#tensor {
+    background-image: url("images/tensor.png");
+    background-position: center;
+}

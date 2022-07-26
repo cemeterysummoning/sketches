@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        #centered {
+            float: left;
+        }
+        #user {
+            padding-left: 30px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="centered">
+        <canvas id="canv"></canvas>
+    </div>
+    <div id="user">
+        <p style="color: white">Iterations</p>
+        <input type="range" min="1" max="10" value="3" id="iterations", oninput="change(this.value)">
+        
+    </div>
+    <script src="tensor.js"></script>
+</body>
+</html>
