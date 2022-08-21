@@ -1,0 +1,22 @@
+{
+  "name": "sketches",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cemeterysummoning/sketches.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cemeterysummoning/sketches/issues"
+  },
+  "homepage": "https://github.com/cemeterysummoning/sketches#readme",
+  "dependencies": {
+    "three": "^0.143.0"
+  }
+}

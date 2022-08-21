@@ -81,3 +81,8 @@ body {
     background-image: url("images/tensor.png");
     background-position: center;
 }
+
+#morb {
+    background-image: url("images/morb.png");
+    background-position: center;
+}
