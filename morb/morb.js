@@ -1,7 +1,7 @@
-import * as THREE from './../node_modules/three/build/three.module.js'
-import { ParametricGeometries } from './../node_modules/three/examples/jsm/geometries/ParametricGeometries.js';
-import { ParametricGeometry } from '../node_modules/three/examples/jsm/geometries/ParametricGeometry.js'
-import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from './required_things/build/three.module.js'
+import { ParametricGeometries } from './required_things/geometries/ParametricGeometries.js';
+import { ParametricGeometry } from './required_things/geometries/ParametricGeometry.js'
+import { OrbitControls } from './required_things/controls/OrbitControls.js'
 
 let camera, scene, renderer;
 
