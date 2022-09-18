@@ -65,14 +65,12 @@ canvas.height = sidelength;
 let ctx = canvas.getContext('2d');
 ctx.fillStyle = "#FFFFFF";
 let iterationsSlider = document.getElementById('user');
-let textfield = document.getElementById('stringinput');
-let button = document.getElementById('go');
 
 let unit = [[1, 1], [0, 1]];
 
 function draw_matrix(matrix) {
-    let vertical_sidelength = Math.ceil(sidelength / matrix.length);
-    let horizontal_sidelength = Math.ceil(sidelength / matrix[0].length);
+    let vertical_sidelength = Math.floor(sidelength / matrix.length);
+    let horizontal_sidelength = Math.floor(sidelength / matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] == 1) {
@@ -98,33 +96,4 @@ function change(iterations) {
     console.log(iterations)
 }
 
-function changeMatrix(stringInput) {
-    ctx.clearRect(0, 0, sidelength, sidelength);
-    let rowsarray = stringInput.split("\\");
-    let temparray = [];
-    
-    for (let i of rowsarray) {
-        temparray.push(i.split("&"));
-    }
-    let finalarray = [];
-    for (let row of temparray) {
-        finalarray.push(row.map(stringnumber => Number(stringnumber)));
-    }
-
-    unit = finalarray;
-    console.log(unit);
-
-    // draw_matrix(calculate_matrix(3, unit));
-}
-
-button.addEventListener('click', () => {
-    // changeMatrix(textfield.value);
-    changeMatrix(textfield.value);
-});
-
-// draw_matrix(calculate_matrix(3, unit));
-unit = [[1, 0], [0, 1]];
-x4 = tensorProduct([[1, 0], [0, 1]], [[1, 0], [0, 1]]);
-
-x16 = calculate_matrix(3, unit);
-draw_matrix(x16);
+draw_matrix(calculate_matrix(3, unit));
