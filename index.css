@@ -86,3 +86,8 @@ body {
     background-image: url("images/morb.png");
     background-position: center;
 }
+
+#annotator {
+    background-image: url("images/annotator.png");
+    background-position: center;
+}
