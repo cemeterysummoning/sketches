@@ -91,3 +91,7 @@ body {
     background-image: url("images/annotator.png");
     background-position: center;
 }
+
+#absurdism {
+    background-image: url("images/absurdism.png")
+}
