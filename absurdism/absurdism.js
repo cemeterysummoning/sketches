@@ -11,21 +11,31 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const fontSize = 16;
-const columns = canvas.width / fontSize;
+const columns = Math.floor(canvas.width / fontSize);
 
-const raindrops = Array.from({ length: columns }).fill(canvas.height);;
+const quote = "Maman died today"
+
+const raindrops = Array.from({ length: columns }).fill(canvas.height);
+
+let indices = new Array(columns);
+
+for (i = 0; i < columns; i++) {
+    indices[i] = i
+}
 
 function draw() {
     context.fillStyle = 'rgba(0, 26, 31, 0.05)';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    if (Math.random() > 0.9) {
-        context.fillStyle = "#D05353"
-    } else {
-        context.fillStyle = "#F1E8B8";
-    }
+    
     context.font = `${fontSize}px monospace`;
 
-    for (let i = 0; i < raindrops.length; i++) {
+    for (let j = 0; j < indices.length; j++) {
+        i = indices[j]
+        if (Math.random() > 0.99) {
+            context.fillStyle = "#D05353"
+        } else {
+            context.fillStyle = "#F1E8B8";
+        }
         let render = text.charAt(Math.floor(Math.random() * text.length));
         context.fillText(render, i * fontSize, raindrops[i] * fontSize);
 
@@ -36,4 +46,15 @@ function draw() {
     }
 }
 
-setInterval(draw, 75);
+function checkzeroes(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+if (checkzeroes(indices)) {
+    setInterval(draw, 50);
+}
